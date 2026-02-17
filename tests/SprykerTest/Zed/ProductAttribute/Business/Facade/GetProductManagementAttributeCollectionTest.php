@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerTest\Zed\ProductAttribute\Business;
+namespace SprykerTest\Zed\ProductAttribute\Business\Facade;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\PaginationTransfer;
@@ -22,6 +22,7 @@ use SprykerTest\Zed\ProductAttribute\ProductAttributeBusinessTester;
  * @group Zed
  * @group ProductAttribute
  * @group Business
+ * @group Facade
  * @group GetProductManagementAttributeCollectionTest
  * Add your own group annotations below this line
  */

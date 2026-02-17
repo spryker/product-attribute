@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerTest\Zed\ProductAttribute\Business;
+namespace SprykerTest\Zed\ProductAttribute\Business\Facade;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\FilterTransfer;
@@ -18,6 +18,7 @@ use Generated\Shared\Transfer\ProductManagementAttributeFilterTransfer;
  * @group Zed
  * @group ProductAttribute
  * @group Business
+ * @group Facade
  * @group GetProductManagementAttributesTest
  * Add your own group annotations below this line
  */
