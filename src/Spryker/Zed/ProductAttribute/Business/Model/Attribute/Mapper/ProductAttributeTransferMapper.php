@@ -40,6 +40,8 @@ class ProductAttributeTransferMapper implements ProductAttributeTransferMapperIn
      */
     protected $translationMapper;
 
+    protected static array $availableLocales = [];
+
     /**
      * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToLocaleInterface $localeFacade
      * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToGlossaryInterface $glossaryFacade
@@ -90,7 +92,7 @@ class ProductAttributeTransferMapper implements ProductAttributeTransferMapperIn
     {
         $transferList = [];
         $glossaryKeys = $this->prepareGlossaryKeys($productAttributeEntityCollection);
-        $localeTransfers = $this->localeFacade->getLocaleCollection();
+        $localeTransfers = $this->getLocaleCollection();
         $glossaryKeyTransfers = $this->glossaryFacade->getGlossaryKeyTransfersByGlossaryKeys($glossaryKeys);
         $translationTransfers = $this->glossaryFacade->getTranslationsByGlossaryKeysAndLocaleTransfers(
             $glossaryKeys,
@@ -182,7 +184,7 @@ class ProductAttributeTransferMapper implements ProductAttributeTransferMapperIn
      */
     protected function setLocalizedAttributeKeys(ProductManagementAttributeTransfer $attributeTransfer, array $translationsByLocaleNameAndGlossaryKey = [])
     {
-        $availableLocales = $this->localeFacade->getLocaleCollection();
+        $availableLocales = $this->getLocaleCollection();
 
         foreach ($availableLocales as $localeTransfer) {
             $glossaryKey = $this->glossaryKeyBuilder->buildGlossaryKey($attributeTransfer->getKey());
@@ -214,5 +216,17 @@ class ProductAttributeTransferMapper implements ProductAttributeTransferMapperIn
         }
 
         return null;
+    }
+
+    /**
+     * @return array<\Generated\Shared\Transfer\LocaleTransfer>
+     */
+    public function getLocaleCollection(): array
+    {
+        if (!static::$availableLocales) {
+            static::$availableLocales = $this->localeFacade->getLocaleCollection();
+        }
+
+        return static::$availableLocales;
     }
 }

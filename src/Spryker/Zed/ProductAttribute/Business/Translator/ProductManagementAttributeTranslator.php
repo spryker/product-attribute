@@ -38,6 +38,11 @@ class ProductManagementAttributeTranslator implements ProductManagementAttribute
     protected $translationMapper;
 
     /**
+     * @var array<\Generated\Shared\Transfer\LocaleTransfer>
+     */
+    protected static array $availableLocales = [];
+
+    /**
      * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToLocaleInterface $localeFacade
      * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToGlossaryInterface $glossaryFacade
      * @param \Spryker\Shared\ProductAttribute\Code\KeyBuilder\GlossaryKeyBuilderInterface $glossaryKeyBuilder
@@ -62,7 +67,7 @@ class ProductManagementAttributeTranslator implements ProductManagementAttribute
      */
     public function translateProductManagementAttributes(ArrayObject $productManagementAttributeTransfers): ArrayObject
     {
-        $localeTransfers = $this->localeFacade->getLocaleCollection();
+        $localeTransfers = $this->getLocaleCollection();
         $glossaryKeys = $this->prepareGlossaryKeys($productManagementAttributeTransfers);
 
         $glossaryKeyTransfers = $this->glossaryFacade->getGlossaryKeyTransfersByGlossaryKeys($glossaryKeys);
@@ -125,5 +130,17 @@ class ProductManagementAttributeTranslator implements ProductManagementAttribute
         }
 
         return $glossaryKeys;
+    }
+
+    /**
+     * @return array<\Generated\Shared\Transfer\LocaleTransfer>
+     */
+    public function getLocaleCollection(): array
+    {
+        if (!static::$availableLocales) {
+            static::$availableLocales = $this->localeFacade->getLocaleCollection();
+        }
+
+        return static::$availableLocales;
     }
 }

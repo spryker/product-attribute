@@ -26,6 +26,8 @@ class ProductManagementAttributeReader implements ProductManagementAttributeRead
      */
     protected ProductManagementAttributeTranslatorInterface $productManagementAttributeTranslator;
 
+    protected static array $cache = [];
+
     /**
      * @param \Spryker\Zed\ProductAttribute\Persistence\ProductAttributeRepositoryInterface $productAttributeRepository
      * @param \Spryker\Zed\ProductAttribute\Business\Translator\ProductManagementAttributeTranslatorInterface $productManagementAttributeTranslator
@@ -46,6 +48,11 @@ class ProductManagementAttributeReader implements ProductManagementAttributeRead
     public function getProductManagementAttributes(
         ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
     ): ProductManagementAttributeCollectionTransfer {
+        $cacheKey = $this->generateCacheKey($productManagementAttributeFilterTransfer);
+        if (isset(static::$cache[$cacheKey])) {
+            return static::$cache[$cacheKey];
+        }
+
         $productManagementAttributeCollectionTransfer = $this->productAttributeRepository
             ->getProductManagementAttributes($productManagementAttributeFilterTransfer);
 
@@ -59,8 +66,10 @@ class ProductManagementAttributeReader implements ProductManagementAttributeRead
         $productManagementAttributeTransfers = $this->productManagementAttributeTranslator
             ->translateProductManagementAttributes($productManagementAttributeTransfers);
 
-        return $productManagementAttributeCollectionTransfer
+        static::$cache[$cacheKey] = $productManagementAttributeCollectionTransfer
             ->setProductManagementAttributes($productManagementAttributeTransfers);
+
+        return static::$cache[$cacheKey];
     }
 
     /**
@@ -141,5 +150,10 @@ class ProductManagementAttributeReader implements ProductManagementAttributeRead
         }
 
         return $indexedProductManagementAttributeValueTransfers;
+    }
+
+    protected function generateCacheKey(ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer): string
+    {
+        return md5(serialize($productManagementAttributeFilterTransfer));
     }
 }
