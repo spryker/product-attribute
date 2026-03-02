@@ -59,9 +59,6 @@ class ProductAttributeFacadeTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -75,9 +72,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->tester->setProductAttributeFacade($this->productAttributeFacade);
     }
 
-    /**
-     * @return void
-     */
     public function testTranslateProductManagementAttributeKeyInGlossary(): void
     {
         /** @var \Spryker\Zed\ProductAttribute\Business\ProductAttributeBusinessFactory|\PHPUnit\Framework\MockObject\MockObject $productManagementBusinessFactoryMock */
@@ -108,9 +102,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->productAttributeFacade->translateProductManagementAttribute($productManagementAttributeTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateProductManagementAttributeReturnsValuesWithIds(): void
     {
         // Arrange
@@ -135,9 +126,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertSame('d', $productManagementAttributeTransfer->getValues()[2]->getValue());
     }
 
-    /**
-     * @return void
-     */
     public function testTranslateProductManagementAttributeValues(): void
     {
         /** @var \Spryker\Zed\ProductAttribute\Business\ProductAttributeBusinessFactory|\PHPUnit\Framework\MockObject\MockObject $productManagementBusinessFactoryMock */
@@ -177,17 +165,11 @@ class ProductAttributeFacadeTest extends Unit
         $this->productAttributeFacade->translateProductManagementAttribute($productManagementAttributeTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributeReturnsNullIfEntityDoesNotExist(): void
     {
         $this->assertNull($this->productAttributeFacade->getProductManagementAttribute(0));
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributeReturnsFullyHydratedTransfer(): void
     {
         $productAttributeKeyEntity = $this->tester->createProductManagementAttributeEntity(['a', 'b', 'c']);
@@ -220,9 +202,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertCount(2, $productManagementAttributeTransfer->getValues()[0]->getLocalizedValues());
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductAbstractAttributeValues(): void
     {
         $productAbstractTransfer = $this->tester->createSampleAbstractProduct(ProductAttributeBusinessTester::ABSTRACT_SKU);
@@ -234,9 +213,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertSame($this->tester->getSampleLocalizedProductAttributeValues(), $productAttributesValues);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductAttributeValues(): void
     {
         $productAbstractTransfer = $this->tester->createSampleAbstractProduct(ProductAttributeBusinessTester::ABSTRACT_SKU);
@@ -249,9 +225,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertSame($this->tester->getSampleLocalizedProductAttributeValues(), $productValues);
     }
 
-    /**
-     * @return void
-     */
     public function testGetMetaAttributesForProductAbstractShouldReturnEmptySetForUndefinedAttributes(): void
     {
         $productAbstractTransfer = $this->tester->createSampleAbstractProduct(ProductAttributeBusinessTester::ABSTRACT_SKU);
@@ -263,9 +236,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertEmpty($metaAttributes);
     }
 
-    /**
-     * @return void
-     */
     public function testGetMetaAttributesForProductShouldReturnEmptySetForUndefinedAttributes(): void
     {
         $productAbstractTransfer = $this->tester->createSampleAbstractProduct(ProductAttributeBusinessTester::ABSTRACT_SKU);
@@ -278,9 +248,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertEmpty($metaAttributes);
     }
 
-    /**
-     * @return void
-     */
     public function testGetMetaAttributesForProductAbstract(): void
     {
         $data = $this->tester->createSampleAttributeMetadataWithSuperAttributeData();
@@ -295,9 +262,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertArrayHasKey(ProductAttributeBusinessTester::SUPER_ATTRIBUTE_KEY, $metaAttributes);
     }
 
-    /**
-     * @return void
-     */
     public function testGetMetaAttributesForProduct(): void
     {
         $data = $this->tester->createSampleAttributeMetadataWithSuperAttributeData();
@@ -313,9 +277,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertArrayHasKey(ProductAttributeBusinessTester::SUPER_ATTRIBUTE_KEY, $metaAttributes);
     }
 
-    /**
-     * @return void
-     */
     public function testSaveAbstractAttributes(): void
     {
         $productAbstractTransfer = $this->tester->createSampleAbstractProduct(ProductAttributeBusinessTester::ABSTRACT_SKU);
@@ -361,9 +322,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertSame($expectedResult, $productAttributesValues);
     }
 
-    /**
-     * @return void
-     */
     public function testSaveConcreteAttributes(): void
     {
         $productAbstractTransfer = $this->tester->createSampleAbstractProduct(ProductAttributeBusinessTester::ABSTRACT_SKU);
@@ -421,9 +379,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertSame($expectedResult, $productAttributesValues);
     }
 
-    /**
-     * @return void
-     */
     public function testSuggestKeys(): void
     {
         $this->tester->createSampleAttributeMetadata(ProductAttributeBusinessTester::FOO_ATTRIBUTE_KEY, false);
@@ -434,9 +389,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertNotEmpty($suggestedKeys);
     }
 
-    /**
-     * @return void
-     */
     public function testSuggestKeysShouldIgnoreSuperAttributes(): void
     {
         $this->tester->createSampleAttributeMetadata(ProductAttributeBusinessTester::FOO_ATTRIBUTE_KEY, false);
@@ -447,9 +399,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertEmpty($suggestedKeys);
     }
 
-    /**
-     * @return void
-     */
     public function testExtractKeysFromAttributes(): void
     {
         $keys = $this->productAttributeFacade->extractKeysFromAttributes($this->tester->getSampleLocalizedProductAttributeValues());
@@ -457,9 +406,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertSame(['foo', 'bar'], $keys);
     }
 
-    /**
-     * @return void
-     */
     public function testExtractValuesFromAttributes(): void
     {
         $values = $this->productAttributeFacade->extractValuesFromAttributes($this->tester->getSampleLocalizedProductAttributeValues());
@@ -477,9 +423,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertSame($expectedValues, $values);
     }
 
-    /**
-     * @return void
-     */
     public function testGetUniqueSuperAttributesFromConcreteProducts(): void
     {
         $attributesData = $this->tester->createSampleAttributeMetadataWithSuperAttributeData();
@@ -500,9 +443,6 @@ class ProductAttributeFacadeTest extends Unit
         $this->assertSame(2, count($uniqueSuperAttributes));
     }
 
-    /**
-     * @return void
-     */
     public function testSaveAbstractAttributesExecutesProductAttributeDataFormatterPlugins(): void
     {
         // Arrange
@@ -537,9 +477,6 @@ class ProductAttributeFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testSaveConcreteAttributesExecutesProductAttributeDataFormatterPlugins(): void
     {
         // Arrange

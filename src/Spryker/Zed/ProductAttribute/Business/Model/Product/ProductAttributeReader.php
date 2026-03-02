@@ -32,11 +32,6 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
      */
     protected $productFacade;
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Persistence\ProductAttributeQueryContainerInterface $productAttributeQueryContainer
-     * @param \Spryker\Zed\ProductAttribute\Business\Model\Product\Mapper\ProductAttributeMapperInterface $attributeMapper
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToProductInterface $productFacade
-     */
     public function __construct(
         ProductAttributeQueryContainerInterface $productAttributeQueryContainer,
         ProductAttributeMapperInterface $attributeMapper,

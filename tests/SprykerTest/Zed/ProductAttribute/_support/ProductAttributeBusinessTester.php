@@ -114,20 +114,11 @@ class ProductAttributeBusinessTester extends Actor
      */
     protected $productAttributeFacade;
 
-    /**
-     * @param array $array1
-     * @param array $array2
-     *
-     * @return void
-     */
     public function assertArrayValuesAreEqual(array $array1, array $array2): void
     {
         $this->assertFalse(array_diff($array1, $array2) || array_diff($array2, $array1));
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\LocaleTransfer
-     */
     public function getLocaleOne(): LocaleTransfer
     {
         if ($this->localeTransferOne === null) {
@@ -137,9 +128,6 @@ class ProductAttributeBusinessTester extends Actor
         return $this->localeTransferOne;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\LocaleTransfer
-     */
     public function getLocaleTwo(): LocaleTransfer
     {
         if ($this->localeTransferTwo === null) {
@@ -149,9 +137,6 @@ class ProductAttributeBusinessTester extends Actor
         return $this->localeTransferTwo;
     }
 
-    /**
-     * @return array
-     */
     public function getSampleLocalizedProductAttributeValues(): array
     {
         $localeTransfer = $this->getLocaleOne();
@@ -175,31 +160,16 @@ class ProductAttributeBusinessTester extends Actor
         return $result;
     }
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToProductInterface $productFacade
-     *
-     * @return void
-     */
     public function setProductFacade(ProductAttributeToProductInterface $productFacade): void
     {
         $this->productFacade = $productFacade;
     }
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Business\ProductAttributeFacadeInterface $productAttributeFacade
-     *
-     * @return void
-     */
     public function setProductAttributeFacade(ProductAttributeFacadeInterface $productAttributeFacade): void
     {
         $this->productAttributeFacade = $productAttributeFacade;
     }
 
-    /**
-     * @param array $values
-     *
-     * @return \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttribute
-     */
     public function createProductManagementAttributeEntity(array $values = []): SpyProductManagementAttribute
     {
         $productManagementAttributeEntity = $this->haveProductManagementAttributeEntity();
@@ -219,11 +189,6 @@ class ProductAttributeBusinessTester extends Actor
         return $productManagementAttributeEntity;
     }
 
-    /**
-     * @param string $localeName
-     *
-     * @return \Generated\Shared\Transfer\LocaleTransfer
-     */
     public function getLocale(string $localeName): LocaleTransfer
     {
         $localeEntity = SpyLocaleQuery::create()
@@ -237,9 +202,6 @@ class ProductAttributeBusinessTester extends Actor
         return $localeTransfer;
     }
 
-    /**
-     * @return array
-     */
     public function generateLocalizedAttributes(): array
     {
         $results = [];
@@ -307,12 +269,6 @@ class ProductAttributeBusinessTester extends Actor
         return $productConcreteTransfer;
     }
 
-    /**
-     * @param string $key
-     * @param bool $isSuper
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     public function createSampleAttributeMetadata(string $key, bool $isSuper = false): ProductManagementAttributeTransfer
     {
         $productManagementAttributeTransfer = (new ProductManagementAttributeTransfer())
@@ -323,9 +279,6 @@ class ProductAttributeBusinessTester extends Actor
         return $this->productAttributeFacade->createProductManagementAttribute($productManagementAttributeTransfer);
     }
 
-    /**
-     * @return array
-     */
     public function createSampleAttributeMetadataWithSuperAttributeData(): array
     {
         $this->createSampleAttributeMetadata(static::FOO_ATTRIBUTE_KEY, false);
@@ -337,11 +290,6 @@ class ProductAttributeBusinessTester extends Actor
         return $data;
     }
 
-    /**
-     * @param \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttribute $productManagementAttributeEntity
-     *
-     * @return void
-     */
     public function addAttributeValueTranslations(SpyProductManagementAttribute $productManagementAttributeEntity): void
     {
         foreach ($productManagementAttributeEntity->getSpyProductManagementAttributeValues() as $productManagementAttributeValueEntity) {

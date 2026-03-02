@@ -130,11 +130,6 @@ class ProductAttributeDependencyProvider extends AbstractBundleDependencyProvide
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUtilSanitizeXssService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_SANITIZE_XSS, function (Container $container) {
@@ -146,11 +141,6 @@ class ProductAttributeDependencyProvider extends AbstractBundleDependencyProvide
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addProductAttributeDataFormatterPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_PRODUCT_ATTRIBUTES_DATA_FORMATTER, function () {

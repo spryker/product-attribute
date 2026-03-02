@@ -27,11 +27,6 @@ class ProductAttribute implements ProductAttributeInterface
      */
     protected $productReader;
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Business\Model\Product\ProductAttributeReaderInterface $productAttributeReader
-     * @param \Spryker\Zed\ProductAttribute\Business\Model\Product\Mapper\ProductAttributeMapperInterface $productAttributeMapper
-     * @param \Spryker\Zed\ProductAttribute\Business\Model\Product\ProductReaderInterface $productReader
-     */
     public function __construct(
         ProductAttributeReaderInterface $productAttributeReader,
         ProductAttributeMapperInterface $productAttributeMapper,

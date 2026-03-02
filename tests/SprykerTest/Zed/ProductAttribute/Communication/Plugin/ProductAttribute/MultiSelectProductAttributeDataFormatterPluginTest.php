@@ -30,9 +30,6 @@ class MultiSelectProductAttributeDataFormatterPluginTest extends Unit
      */
     protected ProductAttributeCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testShouldFormatMultiSelectAttributes(): void
     {
         // Arrange
@@ -55,9 +52,6 @@ class MultiSelectProductAttributeDataFormatterPluginTest extends Unit
         $this->assertSame('Orange', $formattedAttributes['_']['color']);
     }
 
-    /**
-     * @return void
-     */
     public function testShouldIgnoreFormattingForAttributesWithoutInputType(): void
     {
         // Arrange
@@ -84,9 +78,6 @@ class MultiSelectProductAttributeDataFormatterPluginTest extends Unit
         $this->assertSame('Windows 10, Windows 11', $formattedAttributes['_']['pc_operating_system']);
     }
 
-    /**
-     * @return void
-     */
     public function testShouldIgnoreFormattingForAttributesWithoutMultiSelectInputType(): void
     {
         // Arrange
@@ -114,9 +105,6 @@ class MultiSelectProductAttributeDataFormatterPluginTest extends Unit
         $this->assertSame('Windows 10, Windows 11', $formattedAttributes['_']['pc_operating_system']);
     }
 
-    /**
-     * @return void
-     */
     public function testShouldIgnoreFormattingForAttributesWithoutValue(): void
     {
         // Arrange
@@ -142,9 +130,6 @@ class MultiSelectProductAttributeDataFormatterPluginTest extends Unit
         $this->assertEmpty($formattedAttributes['_']);
     }
 
-    /**
-     * @return void
-     */
     public function testShouldTrimMultiSelectAttributes(): void
     {
         // Arrange

@@ -45,13 +45,6 @@ class AttributeWriter implements AttributeWriterInterface
      */
     protected $glossaryKeyBuilder;
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Persistence\ProductAttributeQueryContainerInterface $productAttributeQueryContainer
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToProductInterface $productFacade
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToGlossaryInterface $glossaryFacade
-     * @param \Spryker\Zed\ProductAttribute\Business\Model\Attribute\AttributeValueWriterInterface $attributeValueWriter
-     * @param \Spryker\Shared\ProductAttribute\Code\KeyBuilder\GlossaryKeyBuilderInterface $glossaryKeyBuilder
-     */
     public function __construct(
         ProductAttributeQueryContainerInterface $productAttributeQueryContainer,
         ProductAttributeToProductInterface $productFacade,
@@ -95,11 +88,6 @@ class AttributeWriter implements AttributeWriterInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     protected function executeCreateProductManagementAttributeTransaction(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
     ): ProductManagementAttributeTransfer {
@@ -111,11 +99,6 @@ class AttributeWriter implements AttributeWriterInterface
         return $productManagementAttributeTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     protected function executeUpdateProductManagementAttributeTransaction(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
     ): ProductManagementAttributeTransfer {

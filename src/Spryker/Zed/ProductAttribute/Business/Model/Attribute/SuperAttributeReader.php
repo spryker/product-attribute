@@ -16,9 +16,6 @@ class SuperAttributeReader implements SuperAttributeReaderInterface
      */
     protected $productAttributeRepository;
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Persistence\ProductAttributeRepositoryInterface $productAttributeRepository
-     */
     public function __construct(ProductAttributeRepositoryInterface $productAttributeRepository)
     {
         $this->productAttributeRepository = $productAttributeRepository;

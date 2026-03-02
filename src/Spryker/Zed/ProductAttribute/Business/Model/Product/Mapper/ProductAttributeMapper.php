@@ -17,9 +17,6 @@ class ProductAttributeMapper implements ProductAttributeMapperInterface
      */
     protected $serviceEncoding;
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Service\ProductAttributeToUtilEncodingInterface $serviceEncoding
-     */
     public function __construct(ProductAttributeToUtilEncodingInterface $serviceEncoding)
     {
         $this->serviceEncoding = $serviceEncoding;

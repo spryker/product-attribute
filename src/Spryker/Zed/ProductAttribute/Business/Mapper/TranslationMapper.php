@@ -16,9 +16,6 @@ class TranslationMapper implements TranslationMapperInterface
      */
     protected $glossaryKeyBuilder;
 
-    /**
-     * @param \Spryker\Shared\ProductAttribute\Code\KeyBuilder\GlossaryKeyBuilderInterface $glossaryKeyBuilder
-     */
     public function __construct(GlossaryKeyBuilderInterface $glossaryKeyBuilder)
     {
         $this->glossaryKeyBuilder = $glossaryKeyBuilder;

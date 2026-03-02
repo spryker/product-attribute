@@ -44,11 +44,6 @@ class ProductAttributeDataHelper extends Module
      */
     protected const LOCALE_US = 'en_US';
 
-    /**
-     * @param array $seedData
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     public function generateProductManagementAttributeTransfer(array $seedData = []): ProductManagementAttributeTransfer
     {
         $productManagementAttributeTransfer = (new ProductManagementAttributeBuilder($seedData))->build();
@@ -56,11 +51,6 @@ class ProductAttributeDataHelper extends Module
         return $productManagementAttributeTransfer;
     }
 
-    /**
-     * @param array $seedData
-     *
-     * @return \Generated\Shared\Transfer\LocalizedProductManagementAttributeKeyTransfer
-     */
     public function generateLocalizedProductManagementAttributeKeyTransfer(array $seedData = []): LocalizedProductManagementAttributeKeyTransfer
     {
         $localizedProductManagementAttributeKeyTransfer = (new LocalizedProductManagementAttributeKeyBuilder($seedData))->build();
@@ -68,11 +58,6 @@ class ProductAttributeDataHelper extends Module
         return $localizedProductManagementAttributeKeyTransfer;
     }
 
-    /**
-     * @param array $seedData
-     *
-     * @return \Orm\Zed\Product\Persistence\SpyProductAttributeKey
-     */
     public function haveProductAttributeKeyEntity(array $seedData = []): SpyProductAttributeKey
     {
         $seedData = $seedData + ['key' => md5(microtime())];
@@ -98,12 +83,6 @@ class ProductAttributeDataHelper extends Module
         return $productAttributeKeyEntity;
     }
 
-    /**
-     * @param array $seedData
-     * @param array $productAttributeKeySeed
-     *
-     * @return \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttribute
-     */
     public function haveProductManagementAttributeEntity(array $seedData = [], array $productAttributeKeySeed = []): SpyProductManagementAttribute
     {
         $seedData = $seedData + [
@@ -149,9 +128,6 @@ class ProductAttributeDataHelper extends Module
         return $results;
     }
 
-    /**
-     * @return array
-     */
     protected function getSampleLocalizedProductAttributeValues(): array
     {
         $localeTransfer = $this->getLocaleTransfer();
@@ -171,9 +147,6 @@ class ProductAttributeDataHelper extends Module
         return $result;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\LocaleTransfer
-     */
     protected function getLocaleTransfer(): LocaleTransfer
     {
         if ((bool)getenv('SPRYKER_DYNAMIC_STORE_MODE') === false) {
@@ -183,17 +156,11 @@ class ProductAttributeDataHelper extends Module
         return $this->getLocaleFacade()->getLocale(static::LOCALE_US);
     }
 
-    /**
-     * @return \Spryker\Zed\Locale\Business\LocaleFacadeInterface
-     */
     protected function getLocaleFacade(): LocaleFacadeInterface
     {
         return $this->getLocator()->locale()->facade();
     }
 
-    /**
-     * @return \Spryker\Zed\Product\Business\ProductFacadeInterface
-     */
     public function getProductFacade(): ProductFacadeInterface
     {
         return $this->getLocator()->product()->facade();

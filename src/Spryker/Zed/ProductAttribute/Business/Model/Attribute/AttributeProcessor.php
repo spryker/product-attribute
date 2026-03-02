@@ -29,12 +29,6 @@ class AttributeProcessor implements AttributeProcessorInterface
      */
     protected $concreteLocalizedAttributes;
 
-    /**
-     * @param array $abstractAttributes
-     * @param array $concreteAttributes
-     * @param array $abstractLocalizedAttributes
-     * @param array $concreteLocalizedAttributes
-     */
     public function __construct(
         array $abstractAttributes = [],
         array $concreteAttributes = [],

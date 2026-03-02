@@ -147,17 +147,11 @@ class ProductAttributeBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductAttribute\Business\Model\Attribute\SuperAttributeReaderInterface
-     */
     public function createSuperAttributeReader(): SuperAttributeReaderInterface
     {
         return new SuperAttributeReader($this->getRepository());
     }
 
-    /**
-     * @return \Spryker\Zed\ProductAttribute\Business\Reader\ProductManagementAttributeReaderInterface
-     */
     public function createProductManagementAttributeReader(): ProductManagementAttributeReaderInterface
     {
         return new ProductManagementAttributeReader(
@@ -166,9 +160,6 @@ class ProductAttributeBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductAttribute\Business\Translator\ProductManagementAttributeTranslatorInterface
-     */
     public function createProductManagementAttributeTranslator(): ProductManagementAttributeTranslatorInterface
     {
         return new ProductManagementAttributeTranslator(
@@ -179,9 +170,6 @@ class ProductAttributeBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductAttribute\Business\Mapper\TranslationMapperInterface
-     */
     public function createTranslationMapper(): TranslationMapperInterface
     {
         return new TranslationMapper(
@@ -252,9 +240,6 @@ class ProductAttributeBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(ProductAttributeDependencyProvider::SERVICE_UTIL_ENCODING);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductAttribute\Dependency\Service\ProductAttributeToUtilSanitizeXssServiceInterface
-     */
     public function getUtilSanitizeXssService(): ProductAttributeToUtilSanitizeXssServiceInterface
     {
         return $this->getProvidedDependency(ProductAttributeDependencyProvider::SERVICE_UTIL_SANITIZE_XSS);

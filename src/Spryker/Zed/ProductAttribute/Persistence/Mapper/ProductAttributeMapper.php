@@ -36,12 +36,6 @@ class ProductAttributeMapper implements ProductAttributeMapperInterface
         return $productManagementAttributeTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttributeValue $productManagementAttributeValueEntity
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeValueTransfer $productManagementAttributeValueTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeValueTransfer
-     */
     protected function mapProductManagementAttributeValueEntityToTransfer(
         SpyProductManagementAttributeValue $productManagementAttributeValueEntity,
         ProductManagementAttributeValueTransfer $productManagementAttributeValueTransfer

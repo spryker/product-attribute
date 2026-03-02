@@ -24,10 +24,6 @@ class AttributeTranslationReader implements AttributeTranslationReaderInterface
      */
     protected $glossaryKeyBuilder;
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToGlossaryInterface $glossaryFacade
-     * @param \Spryker\Shared\ProductAttribute\Code\KeyBuilder\GlossaryKeyBuilderInterface $glossaryKeyBuilder
-     */
     public function __construct(
         ProductAttributeToGlossaryInterface $glossaryFacade,
         GlossaryKeyBuilderInterface $glossaryKeyBuilder

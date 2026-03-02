@@ -29,11 +29,6 @@ class AttributeReader implements AttributeReaderInterface
      */
     protected $productAttributeTransferMapper;
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Persistence\ProductAttributeQueryContainerInterface $productManagementQueryContainer
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToLocaleInterface $localeFacade
-     * @param \Spryker\Zed\ProductAttribute\Business\Model\Attribute\Mapper\ProductAttributeTransferMapperInterface $productAttributeTransferGenerator
-     */
     public function __construct(
         ProductAttributeQueryContainerInterface $productManagementQueryContainer,
         ProductAttributeToLocaleInterface $localeFacade,

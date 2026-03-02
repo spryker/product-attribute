@@ -17,17 +17,11 @@ use Spryker\Client\ProductAttribute\Zed\ProductAttributeStubInterface;
  */
 class ProductAttributeFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\ProductAttribute\Zed\ProductAttributeStubInterface
-     */
     public function createProductAttributeStub(): ProductAttributeStubInterface
     {
         return new ProductAttributeStub($this->getZedRequestClient());
     }
 
-    /**
-     * @return \Spryker\Client\ProductAttribute\Dependency\Client\ProductAttributeToZedRequestClientInterface
-     */
     public function getZedRequestClient(): ProductAttributeToZedRequestClientInterface
     {
         return $this->getProvidedDependency(ProductAttributeDependencyProvider::CLIENT_ZED_REQUEST);

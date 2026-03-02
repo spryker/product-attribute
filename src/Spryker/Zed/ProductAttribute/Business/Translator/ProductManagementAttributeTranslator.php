@@ -42,12 +42,6 @@ class ProductManagementAttributeTranslator implements ProductManagementAttribute
      */
     protected static array $availableLocales = [];
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToLocaleInterface $localeFacade
-     * @param \Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToGlossaryInterface $glossaryFacade
-     * @param \Spryker\Shared\ProductAttribute\Code\KeyBuilder\GlossaryKeyBuilderInterface $glossaryKeyBuilder
-     * @param \Spryker\Zed\ProductAttribute\Business\Mapper\TranslationMapperInterface $translationMapper
-     */
     public function __construct(
         ProductAttributeToLocaleInterface $localeFacade,
         ProductAttributeToGlossaryInterface $glossaryFacade,

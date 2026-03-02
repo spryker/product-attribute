@@ -55,17 +55,11 @@ class ProductAttributePersistenceFactory extends AbstractPersistenceFactory
         return SpyProductManagementAttributeValueTranslationQuery::create();
     }
 
-    /**
-     * @return \Spryker\Zed\ProductAttribute\Persistence\Mapper\ProductAttributeMapperInterface
-     */
     public function createProductAttributeMapper(): ProductAttributeMapperInterface
     {
         return new ProductAttributeMapper();
     }
 
-    /**
-     * @return \Spryker\Zed\ProductAttribute\Persistence\Propel\Mapper\ProductManagementAttributeMapper
-     */
     public function createProductManagementAttributeMapper(): ProductManagementAttributeMapper
     {
         return new ProductManagementAttributeMapper();

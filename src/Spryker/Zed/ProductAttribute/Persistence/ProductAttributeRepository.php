@@ -53,11 +53,6 @@ class ProductAttributeRepository extends AbstractRepository implements ProductAt
         return $superAttributes;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer
-     */
     public function getProductManagementAttributes(
         ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
     ): ProductManagementAttributeCollectionTransfer {
@@ -105,12 +100,6 @@ class ProductAttributeRepository extends AbstractRepository implements ProductAt
             ->mapProductManagementAttributeValueEntityCollectionToTransferCollection($productManagementAttributeValueQuery->find());
     }
 
-    /**
-     * @param \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttributeQuery $productManagementAttributeQuery
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
-     *
-     * @return \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttributeQuery
-     */
     protected function applyFilters(
         SpyProductManagementAttributeQuery $productManagementAttributeQuery,
         ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
@@ -140,11 +129,6 @@ class ProductAttributeRepository extends AbstractRepository implements ProductAt
         return $productManagementAttributeQuery;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer
-     */
     public function getProductManagementAttributeCollection(
         ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
     ): ProductManagementAttributeCollectionTransfer {
@@ -172,12 +156,6 @@ class ProductAttributeRepository extends AbstractRepository implements ProductAt
             ->mapProductManagementAttributeEntityCollectionToTransferCollection($productManagementAttributeEntities, $productManagementAttributeCollectionTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
-     * @param \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttributeQuery $productManagementAttributeQuery
-     *
-     * @return \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttributeQuery
-     */
     protected function applyProductManagementAttributeConditions(
         ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer,
         SpyProductManagementAttributeQuery $productManagementAttributeQuery
@@ -197,12 +175,6 @@ class ProductAttributeRepository extends AbstractRepository implements ProductAt
         return $productManagementAttributeQuery;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     * @param \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttributeQuery $productManagementAttributeQuery
-     *
-     * @return \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttributeQuery
-     */
     protected function applyProductManagementAttributePagination(
         PaginationTransfer $paginationTransfer,
         SpyProductManagementAttributeQuery $productManagementAttributeQuery

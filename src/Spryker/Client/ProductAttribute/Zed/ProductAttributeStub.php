@@ -18,9 +18,6 @@ class ProductAttributeStub implements ProductAttributeStubInterface
      */
     protected $zedRequestClient;
 
-    /**
-     * @param \Spryker\Client\ProductAttribute\Dependency\Client\ProductAttributeToZedRequestClientInterface $zedRequestClient
-     */
     public function __construct(ProductAttributeToZedRequestClientInterface $zedRequestClient)
     {
         $this->zedRequestClient = $zedRequestClient;

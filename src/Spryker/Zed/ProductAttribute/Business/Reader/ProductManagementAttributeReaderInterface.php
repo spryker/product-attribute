@@ -13,20 +13,10 @@ use Generated\Shared\Transfer\ProductManagementAttributeFilterTransfer;
 
 interface ProductManagementAttributeReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer
-     */
     public function getProductManagementAttributes(
         ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
     ): ProductManagementAttributeCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer
-     */
     public function getProductManagementAttributeCollection(
         ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
     ): ProductManagementAttributeCollectionTransfer;

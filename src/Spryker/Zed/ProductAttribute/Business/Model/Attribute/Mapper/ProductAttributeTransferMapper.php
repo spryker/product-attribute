@@ -108,11 +108,6 @@ class ProductAttributeTransferMapper implements ProductAttributeTransferMapperIn
         return $transferList;
     }
 
-    /**
-     * @param \Propel\Runtime\Collection\ObjectCollection $productAttributeEntityCollection
-     *
-     * @return array
-     */
     protected function prepareGlossaryKeys(ObjectCollection $productAttributeEntityCollection): array
     {
         $glossaryKeys = [];
@@ -201,12 +196,6 @@ class ProductAttributeTransferMapper implements ProductAttributeTransferMapperIn
         return $attributeTransfer;
     }
 
-    /**
-     * @param string $glossaryKey
-     * @param \Generated\Shared\Transfer\LocaleTransfer $localeTransfer
-     *
-     * @return string|null
-     */
     protected function findTranslationByGlossaryKeyAndLocaleTransfer(string $glossaryKey, LocaleTransfer $localeTransfer): ?string
     {
         if ($this->glossaryFacade->hasTranslation($glossaryKey, $localeTransfer)) {

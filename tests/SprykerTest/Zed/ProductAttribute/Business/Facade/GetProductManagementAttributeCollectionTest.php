@@ -48,17 +48,11 @@ class GetProductManagementAttributeCollectionTest extends Unit
      */
     protected ProductAttributeBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function _before(): void
     {
         $this->tester->ensureDatabaseTableIsEmpty(SpyProductManagementAttributeQuery::create());
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributeCollectionShouldReturnEmptyCollectionWhenNoCriteriaMatched(): void
     {
         // Arrange
@@ -79,9 +73,6 @@ class GetProductManagementAttributeCollectionTest extends Unit
         $this->assertCount(0, $productManagementAttributeCollectionTransfer->getProductManagementAttributes());
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributeCollectionReturnsCollectionWithFilterByKeyCriteria(): void
     {
         // Arrange
@@ -122,9 +113,6 @@ class GetProductManagementAttributeCollectionTest extends Unit
         $this->tester->assertArrayValuesAreEqual($values, $expectedValues);
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributeCollectionShouldReturnCollectionWithTwoTransfersWhenLimitAndOffsetApplied(): void
     {
         // Arrange
@@ -147,9 +135,6 @@ class GetProductManagementAttributeCollectionTest extends Unit
         $this->assertSame(4, $productManagementAttributeCollectionTransfer->getPagination()->getNbResults());
     }
 
-    /**
-     * @return void
-     */
     public function testShouldReturnMultiSelectProductAttribute(): void
     {
         // Arrange

@@ -28,10 +28,6 @@ class ProductManagementAttributeReader implements ProductManagementAttributeRead
 
     protected static array $cache = [];
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Persistence\ProductAttributeRepositoryInterface $productAttributeRepository
-     * @param \Spryker\Zed\ProductAttribute\Business\Translator\ProductManagementAttributeTranslatorInterface $productManagementAttributeTranslator
-     */
     public function __construct(
         ProductAttributeRepositoryInterface $productAttributeRepository,
         ProductManagementAttributeTranslatorInterface $productManagementAttributeTranslator
@@ -40,11 +36,6 @@ class ProductManagementAttributeReader implements ProductManagementAttributeRead
         $this->productManagementAttributeTranslator = $productManagementAttributeTranslator;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer
-     */
     public function getProductManagementAttributes(
         ProductManagementAttributeFilterTransfer $productManagementAttributeFilterTransfer
     ): ProductManagementAttributeCollectionTransfer {
@@ -72,11 +63,6 @@ class ProductManagementAttributeReader implements ProductManagementAttributeRead
         return static::$cache[$cacheKey];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer
-     */
     public function getProductManagementAttributeCollection(
         ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
     ): ProductManagementAttributeCollectionTransfer {

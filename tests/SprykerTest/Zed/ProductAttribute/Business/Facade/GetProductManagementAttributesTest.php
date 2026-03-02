@@ -29,9 +29,6 @@ class GetProductManagementAttributesTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributesRetrievesAttributes(): void
     {
         //Arrange
@@ -57,9 +54,6 @@ class GetProductManagementAttributesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributesEnsureValuesInProductManagementAttribute(): void
     {
         //Arrange
@@ -81,9 +75,6 @@ class GetProductManagementAttributesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributesEnsureThatLocalNameExistsInLocalizedValues(): void
     {
         //Arrange
@@ -108,9 +99,6 @@ class GetProductManagementAttributesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributesRetrievesAttributesWithFilterLimit(): void
     {
         //Arrange
@@ -128,9 +116,6 @@ class GetProductManagementAttributesTest extends Unit
         $this->assertCount(1, $productManagementAttributeCollectionTransfer->getProductManagementAttributes());
     }
 
-    /**
-     * @return void
-     */
     public function testGetProductManagementAttributesRetrievesAttributesWithPagination(): void
     {
         //Arrange

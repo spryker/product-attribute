@@ -18,9 +18,6 @@ use Spryker\Zed\ProductAttribute\Communication\Formatter\MultiSelectAttributeFor
  */
 class ProductAttributeCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\ProductAttribute\Communication\Formatter\MultiSelectAttributeFormatterInterface
-     */
     public function createMultiSelectAttributeFormatter(): MultiSelectAttributeFormatterInterface
     {
         return new MultiSelectAttributeFormatter();

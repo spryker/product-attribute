@@ -164,11 +164,6 @@ class ProductAttributeWriter implements ProductAttributeWriterInterface
         return $this->executeProductAttributeDataFormatterPlugins($attributes, $attributeData);
     }
 
-    /**
-     * @param string $string
-     *
-     * @return string
-     */
     protected function sanitizeString(string $string): string
     {
         return $this->utilSanitizeXssService->sanitizeXss($string);

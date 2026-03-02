@@ -20,9 +20,6 @@ class AttributeValueWriter implements AttributeValueWriterInterface
      */
     protected $productAttributeQueryContainer;
 
-    /**
-     * @param \Spryker\Zed\ProductAttribute\Persistence\ProductAttributeQueryContainerInterface $productManagementQueryContainer
-     */
     public function __construct(ProductAttributeQueryContainerInterface $productManagementQueryContainer)
     {
         $this->productAttributeQueryContainer = $productManagementQueryContainer;
@@ -114,11 +111,6 @@ class AttributeValueWriter implements AttributeValueWriterInterface
         return $result;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeValueTransfer $attributeValueTransfer
-     *
-     * @return void
-     */
     protected function createAttributeValue(ProductManagementAttributeValueTransfer $attributeValueTransfer): void
     {
         $attributeValueEntity = new SpyProductManagementAttributeValue();

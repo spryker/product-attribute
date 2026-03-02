@@ -16,12 +16,6 @@ use Propel\Runtime\Collection\Collection;
 
 class ProductManagementAttributeMapper
 {
-    /**
-     * @param \Propel\Runtime\Collection\Collection $productManagementAttributeEntities
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer $productManagementAttributeCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer
-     */
     public function mapProductManagementAttributeEntityCollectionToTransferCollection(
         Collection $productManagementAttributeEntities,
         ProductManagementAttributeCollectionTransfer $productManagementAttributeCollectionTransfer
@@ -66,12 +60,6 @@ class ProductManagementAttributeMapper
         return $productManagementAttributeValueTransfers;
     }
 
-    /**
-     * @param \Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttribute $productManagementAttributeEntity
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     protected function mapProductManagementAttributeEntityToTransfer(
         SpyProductManagementAttribute $productManagementAttributeEntity,
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
