@@ -59,6 +59,7 @@ class ProductAttributeBusinessFactory extends AbstractBusinessFactory
             $this->getQueryContainer(),
             $this->createProductAttributeMapper(),
             $this->getProductFacade(),
+            $this->getProductAttributeQueryExpanderPlugins(),
         );
     }
 
@@ -251,5 +252,13 @@ class ProductAttributeBusinessFactory extends AbstractBusinessFactory
     public function getProductAttributeDataFormatterPlugins(): array
     {
         return $this->getProvidedDependency(ProductAttributeDependencyProvider::PLUGINS_PRODUCT_ATTRIBUTES_DATA_FORMATTER);
+    }
+
+    /**
+     * @return array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\ProductAttributeQueryExpanderPluginInterface>
+     */
+    public function getProductAttributeQueryExpanderPlugins(): array
+    {
+        return $this->getProvidedDependency(ProductAttributeDependencyProvider::PLUGINS_PRODUCT_ATTRIBUTE_QUERY_EXPANDER);
     }
 }

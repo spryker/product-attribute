@@ -56,6 +56,11 @@ class ProductAttributeDependencyProvider extends AbstractBundleDependencyProvide
     public const PLUGINS_PRODUCT_ATTRIBUTES_DATA_FORMATTER = 'PLUGINS_PRODUCT_ATTRIBUTES_DATA_FORMATTER';
 
     /**
+     * @var string
+     */
+    public const PLUGINS_PRODUCT_ATTRIBUTE_QUERY_EXPANDER = 'PLUGINS_PRODUCT_ATTRIBUTE_QUERY_EXPANDER';
+
+    /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
@@ -70,6 +75,7 @@ class ProductAttributeDependencyProvider extends AbstractBundleDependencyProvide
         $container = $this->addProductFacade($container);
         $container = $this->addUtilSanitizeXssService($container);
         $container = $this->addProductAttributeDataFormatterPlugins($container);
+        $container = $this->addProductAttributeQueryExpanderPlugins($container);
 
         return $container;
     }
@@ -154,6 +160,23 @@ class ProductAttributeDependencyProvider extends AbstractBundleDependencyProvide
      * @return list<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\ProductAttributeDataFormatterPluginInterface>
      */
     protected function getProductAttributeDataFormatterPlugins(): array
+    {
+        return [];
+    }
+
+    protected function addProductAttributeQueryExpanderPlugins(Container $container): Container
+    {
+        $container->set(static::PLUGINS_PRODUCT_ATTRIBUTE_QUERY_EXPANDER, function () {
+            return $this->getProductAttributeQueryExpanderPlugins();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @return array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\ProductAttributeQueryExpanderPluginInterface>
+     */
+    protected function getProductAttributeQueryExpanderPlugins(): array
     {
         return [];
     }

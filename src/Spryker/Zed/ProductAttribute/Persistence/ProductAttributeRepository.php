@@ -165,6 +165,12 @@ class ProductAttributeRepository extends AbstractRepository implements ProductAt
             return $productManagementAttributeQuery;
         }
 
+        if ($productManagementAttributeConditionsTransfer->getProductManagementAttributeIds()) {
+            $productManagementAttributeQuery->filterByIdProductManagementAttribute_In(
+                $productManagementAttributeConditionsTransfer->getProductManagementAttributeIds(),
+            );
+        }
+
         if ($productManagementAttributeConditionsTransfer->getKeys()) {
             $productManagementAttributeQuery
                 ->useSpyProductAttributeKeyQuery()

@@ -7,8 +7,10 @@
 
 namespace Spryker\Zed\ProductAttribute\Business\Model\Product;
 
+use Generated\Shared\Transfer\ProductAttributeQueryCriteriaTransfer;
 use Orm\Zed\Product\Persistence\Map\SpyProductAttributeKeyTableMap;
 use Orm\Zed\ProductAttribute\Persistence\Map\SpyProductManagementAttributeTableMap;
+use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Propel\Runtime\Formatter\ArrayFormatter;
 use Spryker\Zed\ProductAttribute\Business\Model\Product\Mapper\ProductAttributeMapperInterface;
 use Spryker\Zed\ProductAttribute\Dependency\Facade\ProductAttributeToProductInterface;
@@ -32,14 +34,24 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
      */
     protected $productFacade;
 
+    /**
+     * @var array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\ProductAttributeQueryExpanderPluginInterface>
+     */
+    protected array $productAttributeQueryExpanderPlugins;
+
+    /**
+     * @param array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\ProductAttributeQueryExpanderPluginInterface> $productAttributeQueryExpanderPlugins
+     */
     public function __construct(
         ProductAttributeQueryContainerInterface $productAttributeQueryContainer,
         ProductAttributeMapperInterface $attributeMapper,
-        ProductAttributeToProductInterface $productFacade
+        ProductAttributeToProductInterface $productFacade,
+        array $productAttributeQueryExpanderPlugins = [],
     ) {
         $this->productAttributeQueryContainer = $productAttributeQueryContainer;
         $this->attributeMapper = $attributeMapper;
         $this->productFacade = $productFacade;
+        $this->productAttributeQueryExpanderPlugins = $productAttributeQueryExpanderPlugins;
     }
 
     /**
@@ -86,6 +98,8 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
             ->withColumn(SpyProductManagementAttributeTableMap::COL_ALLOW_INPUT, ProductAttributeQueryContainer::ALLOW_INPUT)
             ->withColumn(SpyProductManagementAttributeTableMap::COL_INPUT_TYPE, ProductAttributeQueryContainer::INPUT_TYPE);
 
+        $query = $this->executeProductAttributeQueryExpanderPlugins($query);
+
         return $query;
     }
 
@@ -107,6 +121,25 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
             ->withColumn(SpyProductManagementAttributeTableMap::COL_INPUT_TYPE, ProductAttributeQueryContainer::INPUT_TYPE)
             ->orderByKey()
             ->setFormatter(new ArrayFormatter());
+
+        return $query;
+    }
+
+    protected function executeProductAttributeQueryExpanderPlugins(ModelCriteria $query): ModelCriteria
+    {
+        $productAttributeQueryCriteriaTransfer = new ProductAttributeQueryCriteriaTransfer();
+        foreach ($this->productAttributeQueryExpanderPlugins as $productAttributeQueryExpanderPlugin) {
+            $productAttributeQueryCriteriaTransfer = $productAttributeQueryExpanderPlugin->expandProductAttributeQueryCriteria($productAttributeQueryCriteriaTransfer);
+        }
+
+        return $this->applyQueryCriteria($query, $productAttributeQueryCriteriaTransfer);
+    }
+
+    protected function applyQueryCriteria(ModelCriteria $query, ProductAttributeQueryCriteriaTransfer $productAttributeQueryCriteriaTransfer): ModelCriteria
+    {
+        foreach ($productAttributeQueryCriteriaTransfer->getWithColumns() as $column => $alias) {
+            $query->withColumn($column, $alias);
+        }
 
         return $query;
     }
