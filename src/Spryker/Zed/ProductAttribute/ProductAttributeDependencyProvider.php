@@ -23,42 +23,52 @@ class ProductAttributeDependencyProvider extends AbstractBundleDependencyProvide
     /**
      * @var string
      */
-    public const FACADE_LOCALE = 'FACADE_LOCALE';
+    public const string FACADE_LOCALE = 'FACADE_LOCALE';
 
     /**
      * @var string
      */
-    public const FACADE_GLOSSARY = 'FACADE_GLOSSARY';
+    public const string FACADE_GLOSSARY = 'FACADE_GLOSSARY';
 
     /**
      * @var string
      */
-    public const FACADE_PRODUCT = 'FACADE_PRODUCT';
+    public const string FACADE_PRODUCT = 'FACADE_PRODUCT';
 
     /**
      * @var string
      */
-    public const SERVICE_UTIL_ENCODING = 'SERVICE_UTIL_ENCODING';
+    public const string SERVICE_UTIL_ENCODING = 'SERVICE_UTIL_ENCODING';
 
     /**
      * @var string
      */
-    public const SERVICE_UTIL_SANITIZE = 'SERVICE_UTIL_SANITIZE';
+    public const string SERVICE_UTIL_SANITIZE = 'SERVICE_UTIL_SANITIZE';
 
     /**
      * @var string
      */
-    public const SERVICE_UTIL_SANITIZE_XSS = 'SERVICE_UTIL_SANITIZE_XSS';
+    public const string SERVICE_UTIL_SANITIZE_XSS = 'SERVICE_UTIL_SANITIZE_XSS';
 
     /**
      * @var string
      */
-    public const PLUGINS_PRODUCT_ATTRIBUTES_DATA_FORMATTER = 'PLUGINS_PRODUCT_ATTRIBUTES_DATA_FORMATTER';
+    public const string PLUGINS_PRODUCT_ATTRIBUTES_DATA_FORMATTER = 'PLUGINS_PRODUCT_ATTRIBUTES_DATA_FORMATTER';
 
     /**
      * @var string
      */
-    public const PLUGINS_PRODUCT_ATTRIBUTE_QUERY_EXPANDER = 'PLUGINS_PRODUCT_ATTRIBUTE_QUERY_EXPANDER';
+    public const string PLUGINS_PRODUCT_ATTRIBUTE_QUERY_EXPANDER = 'PLUGINS_PRODUCT_ATTRIBUTE_QUERY_EXPANDER';
+
+    /**
+     * @var string
+     */
+    public const string PLUGINS_SUGGEST_KEYS_QUERY_EXPANDER = 'PLUGINS_SUGGEST_KEYS_QUERY_EXPANDER';
+
+    /**
+     * @var string
+     */
+    public const string PLUGINS_SUGGEST_KEYS_EXPANDER = 'PLUGINS_SUGGEST_KEYS_EXPANDER';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -76,6 +86,8 @@ class ProductAttributeDependencyProvider extends AbstractBundleDependencyProvide
         $container = $this->addUtilSanitizeXssService($container);
         $container = $this->addProductAttributeDataFormatterPlugins($container);
         $container = $this->addProductAttributeQueryExpanderPlugins($container);
+        $container = $this->addSuggestKeysQueryExpanderPlugins($container);
+        $container = $this->addSuggestKeysExpanderPlugins($container);
 
         return $container;
     }
@@ -177,6 +189,40 @@ class ProductAttributeDependencyProvider extends AbstractBundleDependencyProvide
      * @return array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\ProductAttributeQueryExpanderPluginInterface>
      */
     protected function getProductAttributeQueryExpanderPlugins(): array
+    {
+        return [];
+    }
+
+    protected function addSuggestKeysQueryExpanderPlugins(Container $container): Container
+    {
+        $container->set(static::PLUGINS_SUGGEST_KEYS_QUERY_EXPANDER, function () {
+            return $this->getSuggestKeysQueryExpanderPlugins();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @return array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\SuggestKeysQueryExpanderPluginInterface>
+     */
+    protected function getSuggestKeysQueryExpanderPlugins(): array
+    {
+        return [];
+    }
+
+    protected function addSuggestKeysExpanderPlugins(Container $container): Container
+    {
+        $container->set(static::PLUGINS_SUGGEST_KEYS_EXPANDER, function () {
+            return $this->getSuggestKeysExpanderPlugins();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @return array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\SuggestKeysExpanderPluginInterface>
+     */
+    protected function getSuggestKeysExpanderPlugins(): array
     {
         return [];
     }

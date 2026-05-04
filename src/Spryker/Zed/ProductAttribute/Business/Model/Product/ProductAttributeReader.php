@@ -40,18 +40,34 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
     protected array $productAttributeQueryExpanderPlugins;
 
     /**
+     * @var array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\SuggestKeysQueryExpanderPluginInterface>
+     */
+    protected array $suggestKeysQueryExpanderPlugins;
+
+    /**
+     * @var array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\SuggestKeysExpanderPluginInterface>
+     */
+    protected array $suggestKeysExpanderPlugins;
+
+    /**
      * @param array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\ProductAttributeQueryExpanderPluginInterface> $productAttributeQueryExpanderPlugins
+     * @param array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\SuggestKeysQueryExpanderPluginInterface> $suggestKeysQueryExpanderPlugins
+     * @param array<\Spryker\Zed\ProductAttributeExtension\Dependency\Plugin\SuggestKeysExpanderPluginInterface> $suggestKeysExpanderPlugins
      */
     public function __construct(
         ProductAttributeQueryContainerInterface $productAttributeQueryContainer,
         ProductAttributeMapperInterface $attributeMapper,
         ProductAttributeToProductInterface $productFacade,
         array $productAttributeQueryExpanderPlugins = [],
+        array $suggestKeysQueryExpanderPlugins = [],
+        array $suggestKeysExpanderPlugins = [],
     ) {
         $this->productAttributeQueryContainer = $productAttributeQueryContainer;
         $this->attributeMapper = $attributeMapper;
         $this->productFacade = $productFacade;
         $this->productAttributeQueryExpanderPlugins = $productAttributeQueryExpanderPlugins;
+        $this->suggestKeysQueryExpanderPlugins = $suggestKeysQueryExpanderPlugins;
+        $this->suggestKeysExpanderPlugins = $suggestKeysExpanderPlugins;
     }
 
     /**
@@ -76,8 +92,13 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
     public function suggestKeys($searchText = '', $limit = 10)
     {
         $query = $this->querySuggestKeys($searchText, $limit);
+        $suggestKeys = $this->attributeMapper->metaAttributeSuggestKeys($query->find());
 
-        return $this->attributeMapper->metaAttributeSuggestKeys($query->find());
+        foreach ($this->suggestKeysExpanderPlugins as $suggestKeysExpanderPlugin) {
+            $suggestKeys = $suggestKeysExpanderPlugin->expandSuggestKeys($suggestKeys);
+        }
+
+        return $suggestKeys;
     }
 
     /**
@@ -122,14 +143,28 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
             ->orderByKey()
             ->setFormatter(new ArrayFormatter());
 
+        $query = $this->executeSuggestKeysQueryExpanderPlugins($query);
+
         return $query;
     }
 
     protected function executeProductAttributeQueryExpanderPlugins(ModelCriteria $query): ModelCriteria
     {
         $productAttributeQueryCriteriaTransfer = new ProductAttributeQueryCriteriaTransfer();
-        foreach ($this->productAttributeQueryExpanderPlugins as $productAttributeQueryExpanderPlugin) {
-            $productAttributeQueryCriteriaTransfer = $productAttributeQueryExpanderPlugin->expandProductAttributeQueryCriteria($productAttributeQueryCriteriaTransfer);
+
+        foreach ($this->productAttributeQueryExpanderPlugins as $plugin) {
+            $productAttributeQueryCriteriaTransfer = $plugin->expandProductAttributeQueryCriteria($productAttributeQueryCriteriaTransfer);
+        }
+
+        return $this->applyQueryCriteria($query, $productAttributeQueryCriteriaTransfer);
+    }
+
+    protected function executeSuggestKeysQueryExpanderPlugins(ModelCriteria $query): ModelCriteria
+    {
+        $productAttributeQueryCriteriaTransfer = new ProductAttributeQueryCriteriaTransfer();
+
+        foreach ($this->suggestKeysQueryExpanderPlugins as $plugin) {
+            $productAttributeQueryCriteriaTransfer = $plugin->expandSuggestKeysQueryCriteria($productAttributeQueryCriteriaTransfer);
         }
 
         return $this->applyQueryCriteria($query, $productAttributeQueryCriteriaTransfer);
